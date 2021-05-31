@@ -186,7 +186,7 @@
                             seconds: this.totalSecsLeft % 60,
                             minutes: Math.floor(this.totalSecsLeft / 60) % 60,
                             hours: Math.floor(this.totalSecsLeft / 60 / 60) % 24,
-                            days: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
+                            days: Math.floor(this.totalSecsLeft / 60 / 60 / 24),
                             daysToWeek: Math.floor(this.totalSecsLeft / 60 / 60 / 24) % 7,
                             daysToMonth: Math.floor(this.totalSecsLeft / 60 / 60 / 24 % 30.4368),
                             weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
@@ -244,17 +244,19 @@
 
 
              $("#clock").countdown("2021/06/12 20:00:00", function(event) {
-                 var days = "дня";
+                 var days = "дней";
                  var text = "осталось";
 
-                 if(event.offset.days == 5 || event.offset.days == 0) {
-                     days = "дней";
-                 }
+                 var daysLastDigit = event.offset.days % 10;
+                 var daysTwoLastDigits = event.offset.days % 100;
 
-                 if(event.offset.days == 1) {
+                 if(daysLastDigit == 1 && daysTwoLastDigits != 11) {
                      days = "день";
                      text = "остался";
+                 } else if (daysLastDigit >= 2 && daysLastDigit <= 4 && daysTwoLastDigits <= 12 && daysTwoLastDigits >= 20) {
+                     days = "дня";
                  }
+
 
                 $(this).html(
                     event.strftime('<p class="text">До нашей встречи '+text+'</p><p class=date>%D ' + days +  '</p> <p class="time">%H:%M:%S</p>')
