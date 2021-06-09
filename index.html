@@ -1,4 +1,4 @@
-<html>
+﻿<html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>До нашей встречи осталось</title>
@@ -253,7 +253,8 @@
                  if(daysLastDigit == 1 && daysTwoLastDigits != 11) {
                      days = "день";
                      text = "остался";
-                 } else if (daysLastDigit >= 2 && daysLastDigit <= 4 && daysTwoLastDigits <= 12 && daysTwoLastDigits >= 20) {
+                 } else if (daysLastDigit >= 2 && daysLastDigit <= 4
+                                  && daysTwoLastDigits != 12 && daysTwoLastDigits != 13 && daysTwoLastDigits != 14) {
                      days = "дня";
                  }
 
